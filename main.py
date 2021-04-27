@@ -18,9 +18,7 @@ def add_book():
 def list_books():
     import csv
     with open('booksDB.csv', mode='r') as file:
-        #  1: gather the data from the DB
         rows = csv.DictReader(file)
-        #  2: read the file row by row
         for row in rows:
             # fieldnames = ["BookName", "AuthorName", "SharedWith", "IsRead"]
             # print(fieldnames)
@@ -71,4 +69,5 @@ elif option == 4:
     share_book()
 else:
     print("Selected option is not available")
+
 
