@@ -6,7 +6,7 @@ def add_book():
     import csv
     with open('booksDB.csv', mode='w') as file:
         fieldnames = ["BookName", "AuthorName", "SharedWith", "IsRead"]
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer = csv.DictWriter(file, fieldnames = fieldnames)
         writer.writeheader()
         writer.writerow({"BookName": book_name,
                         "AuthorName": author_name,
@@ -29,7 +29,24 @@ def list_books():
 
 
 def edit_book():
-    print("Edit a book option selected")
+    book_name = input("Enter book name -> ")
+    book_read = input("Book read? Y/N? ")
+    if book_read == "Y":
+        book_read = True
+    else:
+        book_read = False
+    import csv
+    rows = []
+    with open('booksDB.csv', mode='r') as file:
+        rows = list(csv.DictReader(file))
+        for row in rows:
+            if row["BookName"] == book_name:
+                row["IsRead"] = book_read
+                break
+    with open('booksDB.csv', mode='w') as file:
+        fieldnames = ["BookName", "AuthorName", "SharedWith", "IsRead"]
+        writer = csv.DictWriter(file, fieldnames = fieldnames)
+        writer.writerows(rows)
 
 
 def share_book():
@@ -54,3 +71,4 @@ elif option == 4:
     share_book()
 else:
     print("Selected option is not available")
+

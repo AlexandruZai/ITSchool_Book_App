@@ -1,2 +1,1 @@
-BookName,AuthorName,SharedWith,IsRead
-Solaris,Stanislaw Lem,None,False
+test,test,None,True
